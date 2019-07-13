@@ -23,12 +23,16 @@ describe('<CharityCard />', () => {
 
     it('should render a name', () => {
         const { getByTestId } = render(<CharityCard {...props} />);
-        expect(getByTestId('charity-card-name')).toBeInTheDocument();
+        const name = getByTestId('charity-card-name');
+        expect(name).toBeInTheDocument();
+        expect(name).toHaveTextContent(props.name);
     });
 
     it('should render a Donate CTA', () => {
         const { getByTestId } = render(<CharityCard {...props} />);
-        expect(getByTestId('charity-card-cta')).toBeInTheDocument();
+        const cta = getByTestId('charity-card-cta');
+        expect(cta).toBeInTheDocument();
+        expect(cta).toHaveTextContent('Donate');
     });
 
 });
