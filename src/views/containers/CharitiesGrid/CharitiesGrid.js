@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
-import { initialState, donationReducer } from '../../../state/reducers/donationReducer';
+import Context from '../../../state/context';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
 
 const GridContainer = styled.div`
@@ -14,7 +14,7 @@ const GridContainer = styled.div`
 
 const CharitiesGrid = () => {
 
-    const [donations, dispatch] = useReducer(donationReducer, initialState);
+    const { state, dispatch } = useContext(Context);
     const [charities, setCharities] = useState([]);
     const fetchData = async () => {
         try {
@@ -24,14 +24,10 @@ const CharitiesGrid = () => {
             ]);
             results[0]
                 .json()
-                .then(data => {
-                    setCharities(data);
-                });
+                .then(data => setCharities(data));
             results[1]
                 .json()
-                .then(data => {
-                    dispatch(actions.setDonationTotals(data)); 
-                });
+                .then(data => dispatch(actions.setDonationTotals(data)));
         } catch (error) {
             console.log(error);
         }
@@ -46,8 +42,8 @@ const CharitiesGrid = () => {
             data-testid="charities-grid">
                 {charities.length > 0 && charities.map((el, index) => (
                     <CharityCard
-                        key={index} 
-                        {...el} 
+                        key={ index } 
+                        { ...el }
                     />
                 ))}
         </GridContainer>

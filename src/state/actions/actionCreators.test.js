@@ -24,13 +24,4 @@ describe('Action Creators', () => {
         expect(actions.updateDonationTotalById(payload)).toEqual(expectedAction);
     });
 
-    it('should get the donation total by charity id', () => {
-        const payload = 0;
-        const expectedAction = {
-            type: ACTION_TYPES.GET_DONATION_TOTAL_BY_ID,
-            payload
-        };
-        expect(actions.getDonationTotalById(payload)).toEqual(expectedAction);
-    });
-
 });

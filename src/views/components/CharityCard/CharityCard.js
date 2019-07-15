@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Flex, Text, Button } from 'rebass';
 import DonationControl from '../DonationControl/DonationControl';
 
@@ -12,7 +12,9 @@ const CharityCard = ({ id, name, image, currency }) => {
             flexDirection="column"
             border="1px solid"
             borderColor="red">
-            <DonationControl id={ id } currency = { currency } />
+            <DonationControl 
+                id={ id } 
+                currency={ currency } />
             <Card
                 data-testid="charity-card-image"
                 width={1}

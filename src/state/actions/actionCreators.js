@@ -13,10 +13,3 @@ export function updateDonationTotalById({ id = null, amount = 0 }) {
         payload: { id, amount }
     }
 }
-
-export function getDonationTotalById(id = null) {
-    return {
-        type: ACTION_TYPES.GET_DONATION_TOTAL_BY_ID,
-        payload: id
-    }
-}

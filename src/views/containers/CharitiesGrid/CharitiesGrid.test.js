@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, waitForElement } from '@testing-library/react';
+import { render, waitForElement, wait } from '@testing-library/react';
 import { FetchMock, fetchMock } from '@react-mock/fetch';
 import * as CONSTANTS from '../../../constants';
+import Context from '../../../state/context';
 import CharitiesGrid from './CharitiesGrid';
 
-function createFetchMock(charityResp = [], paymentsResp = []) {
+function generateComponent(charityResp = [], paymentsResp = [], state = { donations: [] }, dispatch = jest.fn()) {
     return <FetchMock mocks={[
                     {
                         matcher: `${CONSTANTS.API_URL}/charities`, 
@@ -15,29 +16,31 @@ function createFetchMock(charityResp = [], paymentsResp = []) {
                         response: paymentsResp
                     },        
                 ]}>
-                <CharitiesGrid />
+                <Context.Provider value={{ state, dispatch }}>
+                    <CharitiesGrid />
+                </Context.Provider>
             </FetchMock>;
 }
 
 describe('<CharitiesGrid />', () => {
 
     it('should exist', () => {
-        const { getByTestId } = render(<CharitiesGrid />);
+        const { getByTestId } = render(generateComponent());
         expect(getByTestId('charities-grid')).toBeInTheDocument();
     });
 
     it('should fetch charities', async () => {
-        render(createFetchMock());
+        render(generateComponent());
         expect(fetchMock.called(`${CONSTANTS.API_URL}/charities`)).toBe(true);
     });  
 
     it('should fetch payments', async () => {
-        render(createFetchMock());
+        render(generateComponent());
         expect(fetchMock.called(`${CONSTANTS.API_URL}/payments`)).toBe(true);
     });    
 
     it('should render a card', async () => {
-        const { getAllByTestId } = render(createFetchMock([{
+        const { getAllByTestId } = render(generateComponent([{
             "id": 1,
             "name": "Baan Kru Noi",
             "image": "baan-kru-noi.jpg",
@@ -48,7 +51,7 @@ describe('<CharitiesGrid />', () => {
     });
 
     it('should render multiple cards', async () => {
-        const { getAllByTestId } = render(createFetchMock([     {
+        const { getAllByTestId } = render(generateComponent([{
             "id": 1,
             "name": "Baan Kru Noi",
             "image": "baan-kru-noi.jpg",
@@ -62,6 +65,50 @@ describe('<CharitiesGrid />', () => {
           }]));
         const cards = await waitForElement(() => getAllByTestId('charity-card'));
         expect(cards.length).toEqual(2);  
+    });
+
+    it('should dispatch the donation totals', async () => {
+        const dispatch = jest.fn();
+        const paymentsResp = [
+            {
+              "charitiesId": 2,
+              "amount": 10,
+              "currency": "THB",
+              "id": 1
+            },
+            {
+              "charitiesId": 1,
+              "amount": 20,
+              "currency": "THB",
+              "id": 2
+            },
+            {
+              "charitiesId": 3,
+              "amount": 50,
+              "currency": "THB",
+              "id": 3
+            },
+            {
+              "charitiesId": 4,
+              "amount": 100,
+              "currency": "THB",
+              "id": 4
+            },
+            {
+              "charitiesId": 2,
+              "amount": 500,
+              "currency": "THB",
+              "id": 5
+            },
+            {
+              "charitiesId": 5,
+              "amount": 500,
+              "currency": "THB",
+              "id": 6
+            }
+          ];
+        const { container } = render(generateComponent([], paymentsResp, { donations: [] }, dispatch));
+        await wait(() => expect(dispatch).toHaveBeenCalled());
     });
 
 });

@@ -24,8 +24,6 @@ export const donationReducer = (state = initialState, action = '') => {
 		return [...state.donations].map(el => el.charitiesId === action.payload.id 
 				? { ...el, amount: el.amount + action.payload.amount } 
 				: el);
-      case ACTION_TYPES.GET_DONATION_TOTAL_BY_ID:
-        return [...state.donations].find(charity => charity.charitiesId === action.payload);
       default:
         return {...state};
     }

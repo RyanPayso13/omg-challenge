@@ -100,33 +100,4 @@ describe('Donation reducer', () => {
 
     });
 
-    describe(`${ACTION_TYPES.GET_DONATION_TOTAL_BY_ID}`, () => {
-
-        const donations = [{
-                charitiesId: 2,
-                amount: 10,
-                currency: "THB",
-            },
-            {
-                charitiesId: 3,
-                amount: 10,
-                currency: "THB",
-            }];
-        const payload = 2;
-
-        it('should get the charity donation total by id', () => {
-            expect(donationReducer({
-                donations: [...donations]
-            }, {
-                type: ACTION_TYPES.GET_DONATION_TOTAL_BY_ID,
-                payload: payload
-            })).toEqual({
-                charitiesId: 2,
-                amount: 10,
-                currency: "THB",
-            });
-        });
-
-    });
-
 });
