@@ -15,15 +15,26 @@ export const donationReducer = (state = initialState, action = '') => {
 								'charitiesId': parseInt(key, 10),
 								'amount': _.sumBy(objs, 'amount')
 							}))
-							.value();
+              .value();
+              
         return {
           ...state,
           donations: output
         };
       case ACTION_TYPES.UPDATE_DONATION_TOTAL_BY_ID:
-		return [...state.donations].map(el => el.charitiesId === action.payload.id 
-				? { ...el, amount: el.amount + action.payload.amount } 
-				: el);
+          const updated = state.donations.map((item, index) => {
+            if (item.charitiesId === action.payload.charitiesId) {
+              return {
+                ...item,  
+                amount: item.amount + action.payload.amount
+              }
+            }
+            return item;
+          });
+          return {
+            ...state,
+            donations: updated
+          };
       default:
         return {...state};
     }

@@ -7,9 +7,9 @@ export function setDonationTotals(donations = []) {
     }
 }
 
-export function updateDonationTotalById({ id = null, amount = 0 }) {
+export function updateDonationTotalById({ charitiesId = null, amount = 0 }) {
     return {
         type: ACTION_TYPES.UPDATE_DONATION_TOTAL_BY_ID,
-        payload: { id, amount }
+        payload: { charitiesId, amount }
     }
 }

@@ -86,16 +86,7 @@ describe('Donation reducer', () => {
             }, {
                 type: ACTION_TYPES.UPDATE_DONATION_TOTAL_BY_ID,
                 payload: payload
-            })).toEqual([{
-                charitiesId: 2,
-                amount: 110,
-                currency: "THB",
-            },
-            {
-                charitiesId: 3,
-                amount: 10,
-                currency: "THB",
-            }]);
+            })).toEqual({"donations": [{"amount": 10, "charitiesId": 2, "currency": "THB"}, {"amount": 10, "charitiesId": 3, "currency": "THB"}]});
         });
 
     });

@@ -3,13 +3,31 @@ import { Heading, Button } from 'rebass';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
-import { donationReducer } from '../../../state/reducers/donationReducer';
 
 const DonationControl = ({ id, currency }) => {
 
     const amounts = [...CONSTANTS.DONATION_AMOUNTS];
     const {state, dispatch} = useContext(Context);
     const [total, setTotal] = useState(0);
+    const handleOnSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const result = await fetch(`${CONSTANTS.API_URL}/payments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    charitiesId: id,
+                    amount: 1,
+                    currency: currency
+                  })
+            });
+            result.json().then(data => dispatch(actions.updateDonationTotalById(data)));
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     useEffect(() => {
         if (state.donations.length > 0) {
@@ -22,6 +40,7 @@ const DonationControl = ({ id, currency }) => {
             <Heading 
                 data-testid="donation-total">Amount donated: { total } { currency }</Heading>
             <form 
+                onSubmit={ handleOnSubmit }  
                 data-testid="donation-form">
                 <label 
                     htmlFor="donation-amount"

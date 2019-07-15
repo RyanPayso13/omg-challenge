@@ -14,7 +14,7 @@ describe('Action Creators', () => {
 
     it('should update the donation total by charity id', () => {
         const payload = {
-            id: 1,
+            charitiesId: 1,
             amount: 100
         };
         const expectedAction = {
