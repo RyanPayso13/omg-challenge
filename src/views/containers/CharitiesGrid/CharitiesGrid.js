@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import styled from 'styled-components';
 import * as CONSTANTS from '../../../constants';
+import * as actions from '../../../state/actions/actionCreators';
+import { initialState, donationReducer } from '../../../state/reducers/donationReducer';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
 
 const GridContainer = styled.div`
@@ -12,8 +14,9 @@ const GridContainer = styled.div`
 
 const CharitiesGrid = () => {
 
+    const [donations, dispatch] = useReducer(donationReducer, initialState);
     const [charities, setCharities] = useState([]);
-    const fetchCharities = async () => {
+    const fetchData = async () => {
         try {
             const results = await Promise.all([
                 fetch(`${CONSTANTS.API_URL}/charities`), 
@@ -21,8 +24,13 @@ const CharitiesGrid = () => {
             ]);
             results[0]
                 .json()
-                .then((data) => {
+                .then(data => {
                     setCharities(data);
+                });
+            results[1]
+                .json()
+                .then(data => {
+                    dispatch(actions.setDonationTotals(data)); 
                 });
         } catch (error) {
             console.log(error);
@@ -30,7 +38,7 @@ const CharitiesGrid = () => {
     };
 
     useEffect(() => {
-        fetchCharities();
+        fetchData();
     }, []);
 
     return (
