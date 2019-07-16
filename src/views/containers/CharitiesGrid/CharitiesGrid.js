@@ -4,6 +4,7 @@ import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
 import { GridContainer } from '../../components/Styled/GridContainer';
+import { GridCell } from '../../components/Styled/GridCell';
 
 const CharitiesGrid = () => {
 
@@ -34,10 +35,12 @@ const CharitiesGrid = () => {
         <GridContainer
             data-testid="charities-grid">
                 {charities.length > 0 && charities.map((el, index) => (
-                    <CharityCard
-                        key={ index } 
-                        { ...el }
-                    />
+                    <GridCell key={ index }>
+                        <CharityCard
+                            key={ index } 
+                            { ...el }
+                        />
+                    </GridCell>
                 ))}
         </GridContainer>
     );

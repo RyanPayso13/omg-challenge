@@ -16,7 +16,8 @@ function App() {
             width={[ 1, 3/4 ]}
             mx={'auto'}
             py="4">
-            <Heading 
+            <Heading
+              color="#627381" 
               fontSize={[ 4, 6 ]} 
               textAlign="center">Omise Tamboon React</Heading>
             <CharitiesGrid />

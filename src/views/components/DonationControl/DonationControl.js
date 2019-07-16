@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
-import { Heading, Button } from 'rebass';
+import { Heading, Button, Text } from 'rebass';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import { ValidationMessage } from '../Styled/ValidationMessage';  
 
-const DonationControl = ({ id, currency }) => {
+const DonationControl = ({ id, currency, handleToggle }) => {
 
     const amounts = [...CONSTANTS.DONATION_AMOUNTS];
     const {state, dispatch} = useContext(Context);
@@ -37,7 +37,10 @@ const DonationControl = ({ id, currency }) => {
                     currency: currency
                   })
             });
-            result.json().then(data => dispatch(actions.updateDonationTotalById(data)));
+            result.json().then(data => {
+                dispatch(actions.updateDonationTotalById(data));
+                handleToggle();
+            });
         } catch (error) {
             console.log(error);
         }
@@ -52,13 +55,16 @@ const DonationControl = ({ id, currency }) => {
     return(
         <React.Fragment>
             <Heading 
-                data-testid="donation-total">Amount donated: { total } { currency }</Heading>
+                data-testid="donation-total"
+                color="#627381">Amount donated: { total } { currency }</Heading>
             <form 
                 onSubmit={ handleOnSubmit }  
                 data-testid="donation-form">
                 <label 
                     htmlFor="donation-amount"
-                    data-testid="donation-label">Select the amount to donate ({ currency })</label>
+                    data-testid="donation-label">
+                        <Text color="#627381">Select the amount to donate ({ currency })</Text>
+                    </label>
                 <select 
                     name="donation-amount"
                     data-testid="donation-amount"
