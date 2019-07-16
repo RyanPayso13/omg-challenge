@@ -1,16 +1,30 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { Heading, Button } from 'rebass';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
+import { ValidationMessage } from '../Styled/ValidationMessage';  
 
 const DonationControl = ({ id, currency }) => {
 
     const amounts = [...CONSTANTS.DONATION_AMOUNTS];
     const {state, dispatch} = useContext(Context);
     const [total, setTotal] = useState(0);
+    const [amount, setAmount] = useState('');
+    const [validation, setValidation] = useState(false);
+    const amountRef = useRef();
+    const handleOnChange = (event) => {
+        setAmount(amountRef.current.value);
+    };
     const handleOnSubmit = async (event) => {
         event.preventDefault();
+
+        if (amount === '') {
+            return setValidation(true);
+        } else {
+            setValidation(false);
+        };
+
         try {
             const result = await fetch(`${CONSTANTS.API_URL}/payments`, {
                 method: 'POST',
@@ -19,7 +33,7 @@ const DonationControl = ({ id, currency }) => {
                 },
                 body: JSON.stringify({
                     charitiesId: id,
-                    amount: 1,
+                    amount: parseInt(amount, 10),
                     currency: currency
                   })
             });
@@ -47,9 +61,11 @@ const DonationControl = ({ id, currency }) => {
                     data-testid="donation-label">Select the amount to donate ({ currency })</label>
                 <select 
                     name="donation-amount"
-                    data-testid="donation-amount">
-                        <option 
-                            value="">
+                    data-testid="donation-amount"
+                    onChange={ handleOnChange }
+                    ref={ amountRef }
+                    defaultValue="">
+                        <option value="">
                             Select an amount...
                         </option>
                     {amounts.length > 0 && amounts.map((amount, index) => {
@@ -60,6 +76,7 @@ const DonationControl = ({ id, currency }) => {
                                 </option>
                     })}
                 </select>
+                {validation && <ValidationMessage data-testid="donation-validation-message">Please select an amount!</ValidationMessage>}
                 <Button 
                     data-testid="donation-cta"
                     border="1px solid"

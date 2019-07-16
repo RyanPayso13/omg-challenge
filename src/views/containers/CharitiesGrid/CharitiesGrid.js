@@ -1,16 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import styled from 'styled-components';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
-
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-    margin-top: 3rem;
-`;
+import { GridContainer } from '../../components/Styled/GridContainer';
 
 const CharitiesGrid = () => {
 

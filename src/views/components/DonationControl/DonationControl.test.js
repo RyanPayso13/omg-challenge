@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import StateMock from '@react-mock/state';
 import * as CONSTANTS from '../../../constants';
 import Context from '../../../state/context';
 import DonationControl from './DonationControl';
@@ -50,10 +51,6 @@ describe('<DonationControl />', () => {
         expect(cta).toHaveTextContent('Pay');
     });
 
-    it('should be disabled on form submission', () => {
-
-    });
-
     describe('Amount selection', () => {
 
         it('should render a donation select amount', () => {
@@ -64,9 +61,31 @@ describe('<DonationControl />', () => {
 
         it('should have amount options', () => {
             const { container, getByTestId } = render(generateContextComponent(props));
-            const select = getByTestId('donation-amount');
             const options = container.querySelectorAll('option');
             expect(options.length).toEqual(6);
+        });
+
+        // xit('should render a validation message', async () => {
+        //     const { getByText } = render(
+        //         <StateMock state={{ validation: true }}>
+        //           <DonationControl { ...props } />
+        //         </StateMock>
+        //       );
+        //     const msg = await waitForElement(() => getByText('Please select an amount!'));
+        //     expect(msg).toBeInTheDocument();
+        //     expect(msg).toHaveTextContent('Please select an amount!');
+        // });
+
+    });
+
+    describe('On submit', () => {
+
+        it('should submit the donation', () => {
+
+        });
+
+        it('should not submit the donation', () => {
+
         });
 
     });
