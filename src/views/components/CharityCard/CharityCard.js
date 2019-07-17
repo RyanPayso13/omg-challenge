@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import { Card, Flex, Text, Button } from 'rebass';
+import React, { useState, useEffect, useContext } from 'react';
+import { Card, Flex, Box, Text, Button } from 'rebass';
+import Context from '../../../state/context';
 import OverlayControl from '../OverlayControl/OverlayControl';
 
 const assetPath = process.env.PUBLIC_URL + '/assets/img/';
@@ -7,7 +8,16 @@ const assetPath = process.env.PUBLIC_URL + '/assets/img/';
 const CharityCard = ({ id, name, image, currency }) => {
 
     const [toggle, setToggle] = useState(false);
+    const {state, dispatch} = useContext(Context);
+    const [total, setTotal] = useState(0);
     const handleClick = () => setToggle(!toggle);
+    
+    useEffect(() => {
+        if (state.donations.length > 0) {
+            setTotal(state.donations.find(el => el.charitiesId === id).amount);
+        }
+    }, [state.donations, id]);
+
     return (
         <Flex
             data-testid="charity-card"  
@@ -48,6 +58,17 @@ const CharityCard = ({ id, name, image, currency }) => {
                         Donate
                 </Button>
             </Flex>
+            <Box
+                px={ 2 }
+                pb={ 2 }
+                mt={ -3 }>
+                <Text
+                    data-testid="donation-total"
+                    color="#627381"
+                    fontSize={ 1 }>
+                    Amount donated: { total } ({ currency })
+                </Text>
+            </Box>
         </Flex>
     );
 };

@@ -1,23 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { SyncLoader } from 'react-spinners';
-import { css } from '@emotion/core';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
+import Loader from '../../components/Loader/Loader';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
 import { GridContainer } from '../../components/Styled/GridContainer';
 import { GridCell } from '../../components/Styled/GridCell';
-import { OverlayWrap } from '../../components/Styled/OverlayWrap';
 
 const CharitiesGrid = () => {
 
     const { state, dispatch } = useContext(Context);
     const [charities, setCharities] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const loader = css`
-        align-self: center;
-        margin: 0 auto; 
-    `;
     const fetchData = async () => {
         try {
             setIsLoading(true);
@@ -45,14 +39,7 @@ const CharitiesGrid = () => {
     return (
         <GridContainer
             data-testid="charities-grid">
-                {isLoading && 
-                    <OverlayWrap
-                        data-testid="loader">
-                        <SyncLoader
-                            css={ loader }
-                            color='#3C98EE' />
-                    </OverlayWrap>
-                }
+                <Loader isLoading={ isLoading } />
                 {charities.length > 0 && charities.map((el, index) => (
                     <GridCell 
                         key={ index }>
