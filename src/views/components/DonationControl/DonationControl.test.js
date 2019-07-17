@@ -78,7 +78,7 @@ describe('<DonationControl />', () => {
 
     });
 
-    describe('On submit', () => {
+    describe('Donation submission', () => {
 
         it('should submit the donation', () => {
 
