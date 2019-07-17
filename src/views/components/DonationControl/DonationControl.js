@@ -1,10 +1,9 @@
 import React, { useState, useContext, useRef } from 'react';
 import { Box, Flex, Button, Text } from 'rebass';
-import { SyncLoader } from 'react-spinners';
-import { css } from '@emotion/core';
 import Context from '../../../state/context';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
+import Loader from '../Loader/Loader';
 import { ValidationMessage } from '../Styled/ValidationMessage';  
 import { OverlayWrap } from '../../components/Styled/OverlayWrap';
 
@@ -49,10 +48,6 @@ const DonationControl = ({ id, currency, handleToggle }) => {
             setIsLoading(false);
         }
     };
-    const loader = css`
-        align-self: center;
-        margin: 0 auto; 
-    `;
 
     return(
         <React.Fragment>
