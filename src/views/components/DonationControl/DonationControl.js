@@ -56,14 +56,7 @@ const DonationControl = ({ id, currency, handleToggle }) => {
 
     return(
         <React.Fragment>
-            {isLoading && 
-                <OverlayWrap
-                    data-testid="loader">
-                    <SyncLoader
-                        css={ loader }
-                        color='#3C98EE' />    
-                </OverlayWrap>
-            }
+            <Loader isLoading={ isLoading } />
             {isSuccess && 
                 <OverlayWrap
                     data-testid="donation-success">
