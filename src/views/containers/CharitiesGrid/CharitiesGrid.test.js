@@ -1,8 +1,10 @@
 import React from 'react';
 import { render, waitForElement, wait } from '@testing-library/react';
 import { FetchMock, fetchMock } from '@react-mock/fetch';
+import { StateMock } from '@react-mock/state';
 import * as CONSTANTS from '../../../constants';
 import Context from '../../../state/context';
+import * as ACTION_TYPES from '../../../state/actions/actionTypes';
 import CharitiesGrid from './CharitiesGrid';
 
 function generateComponent(charityResp = [], paymentsResp = [], state = { donations: [] }, dispatch = jest.fn()) {
@@ -108,7 +110,26 @@ describe('<CharitiesGrid />', () => {
             }
           ];
         const { container } = render(generateComponent([], paymentsResp, { donations: [] }, dispatch));
-        await wait(() => expect(dispatch).toHaveBeenCalled());
+        await wait(() => {
+            expect(dispatch).toHaveBeenCalled();
+            expect(dispatch).toHaveBeenCalledWith({
+              payload: [...paymentsResp],
+              type: ACTION_TYPES.SET_DONATION_TOTALS
+            });
+          });
+    });
+
+    it('should render the loader', () => {
+      const state = { donations: [] };
+      const dispatch = jest.fn();
+      const { getByTestId } = render(
+        <Context.Provider value={{ state, dispatch }}>
+          <StateMock state={{ isLoading: true }}>
+            <CharitiesGrid />
+          </StateMock>
+        </Context.Provider>
+      );
+      expect(getByTestId('loader')).toBeInTheDocument();
     });
 
 });

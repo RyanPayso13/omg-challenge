@@ -7,5 +7,5 @@ export const OverlayWrap = styled.div`
     background-color: rgba(256, 256, 256, .9);
     z-index: 10;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 `;

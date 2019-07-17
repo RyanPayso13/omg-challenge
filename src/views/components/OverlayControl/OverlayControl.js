@@ -6,7 +6,8 @@ import { OverlayWrap } from '../Styled/OverlayWrap';
 const OverlayControl = ({ id, currency, handleToggle }) => {
 
     return (
-        <OverlayWrap data-testid="overlay-wrap">
+        <OverlayWrap 
+            data-testid="overlay-wrap">
             <OverlayClose 
                 size="24"
                 data-testid="overlay-close"
