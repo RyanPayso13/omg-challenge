@@ -16,7 +16,7 @@ describe('<NotificationMessage />', () => {
 
     it('should be the default message color', () => {
         const { getByTestId } = render(<NotificationMessage />);
-        expect(getByTestId('notification-message')).toHaveStyle('color: #B62420'); 
+        expect(getByTestId('notification-message')).toHaveStyle('color: #627381'); 
     });
 
     it('should have a close button', () => {

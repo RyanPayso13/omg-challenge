@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Text, Button } from 'rebass';
 import { OverlayWrap } from '../Styled';
 
-const NotificationMessage = ({ message = '', callback, msgColor = "#B62420" }) => {
+const NotificationMessage = ({ message = '', callback, msgColor = "#627381" }) => {
     return (
         <OverlayWrap
             data-testid="notification-container">

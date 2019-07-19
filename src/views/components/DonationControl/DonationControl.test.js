@@ -89,7 +89,7 @@ describe('<DonationControl />', () => {
             const successMsg = await waitForElement(() => getByTestId('notification-message'));
             expect(successView).toBeInTheDocument();
             expect(successMsg).toHaveTextContent('Your donation was successful!');
-            expect(successMsg).toHaveStyle('color: #B62420');
+            expect(successMsg).toHaveStyle('color: #627381');
         });
 
         it('should render error state', async () => {
