@@ -1,13 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ValidationMessage /> should work 1`] = `
-.c0 {
-  color: red;
-  margin: 0 0 10px;
-  font-size: 12px;
-}
-
 <p
-  class="c0"
+  class="sc-bdVaJa eUkwbj"
 />
 `;

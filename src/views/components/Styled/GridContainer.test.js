@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { GridContainer } from './GridContainer.js';
+import { GridContainer } from './GridContainer';
 
 describe('<GridContainer />', () => {
 

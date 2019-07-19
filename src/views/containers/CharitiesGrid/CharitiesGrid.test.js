@@ -122,7 +122,7 @@ describe('<CharitiesGrid />', () => {
       const { getByTestId } = render(generateComponent(Promise.reject('API error')));
       const errorView = await waitForElement(() => getByTestId('charities-grid-error'));
       expect(errorView).toBeInTheDocument();
-      expect(errorView).toHaveTextContent('There has been an error!Close');
+      expect(errorView).toHaveTextContent('There has been an error!');
   });
 
 });

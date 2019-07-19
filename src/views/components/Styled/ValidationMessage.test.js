@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ValidationMessage } from './ValidationMessage.js';
+import { ValidationMessage } from './ValidationMessage';
 
 describe('<ValidationMessage />', () => {
 

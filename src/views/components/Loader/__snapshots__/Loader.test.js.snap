@@ -1,23 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Loader /> should render 1`] = `
-.c0 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(256,256,256,.9);
-  z-index: 10;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
 <div
-  class="c0"
+  class="sc-bxivhb iVhnNY"
 >
   <div
     class="css-15yujpl-Loader"

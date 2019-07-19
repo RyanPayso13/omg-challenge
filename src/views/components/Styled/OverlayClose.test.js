@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { OverlayClose } from './OverlayClose.js';
+import { OverlayClose } from './OverlayClose';
 
 describe('<OverlayClose />', () => {
 

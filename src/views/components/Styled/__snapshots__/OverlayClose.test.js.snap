@@ -1,23 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OverlayClose /> should work 1`] = `
-.c1 {
-  display: inline-block;
-  vertical-align: -.125em;
-  overflow: hidden;
-}
-
-.c0 {
-  position: absolute;
-  top: .5em;
-  right: .5em;
-  cursor: pointer;
-  color: #627381;
-}
-
 <svg
   aria-hidden="true"
-  class="c0 c1"
+  class="sc-bdVaJa iDhOOg StyledIconBase-sc-bdy9j4 cCvWXa"
   fill="currentColor"
   focusable="false"
   viewBox="0 0 352 512"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { OverlayWrap } from './OverlayWrap.js';
+import { OverlayWrap } from './OverlayWrap';
 
 describe('<OverlayWrap />', () => {
 
