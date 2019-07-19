@@ -4,6 +4,7 @@ import Context from '../../../state/context';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Loader from '../Loader/Loader';
+import Error from '../Error/Error';
 import { OverlayWrap, ValidationMessage } from '../Styled';  
 
 const DonationControl = ({ id, currency, handleToggle }) => {
@@ -77,29 +78,7 @@ const DonationControl = ({ id, currency, handleToggle }) => {
                 </OverlayWrap>
             }
             {isError && 
-                <OverlayWrap
-                    data-testid="donation-error">
-                    <Flex
-                        flexDirection="column"
-                        alignItems="center"
-                        justifyContent="center"
-                        width="100%">
-                        <Text 
-                            color="#627381"
-                            mb={ 2 }>
-                            There has been an error!
-                        </Text>
-                        <Button 
-                            data-testid="close-cta"
-                            border="1px solid"
-                            borderColor="#2b6cb0"
-                            color="#2b6cb0"
-                            bg="white"
-                            onClick={ handleToggle }>
-                            Close
-                        </Button>
-                    </Flex>
-                </OverlayWrap>
+                <Error callback={ handleToggle } />
             }
             {!isLoading && !isSuccess && !isError &&
                 <Flex

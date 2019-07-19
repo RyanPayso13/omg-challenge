@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Error /> should render 1`] = `
+<div
+  class="sc-gZMcBi eSpJzV"
+  data-testid="error-container"
+>
+  <div
+    class="sc-bdVaJa sc-bwzfXH dJYYq"
+    width="100%"
+  >
+    <div
+      class="sc-bdVaJa sc-htpNat AOxAi"
+      color="#627381"
+      data-testid="error-message"
+    >
+      There has been an error!
+    </div>
+  </div>
+</div>
+`;

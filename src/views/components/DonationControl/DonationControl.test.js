@@ -98,9 +98,8 @@ describe('<DonationControl />', () => {
             fireEvent.change(select, { target: { value: '10' } });
             fireEvent.click(btn);
         
-            const errorView = await waitForElement(() => getByTestId('donation-error'));
+            const errorView = await waitForElement(() => getByTestId('error-container'));
             expect(errorView).toBeInTheDocument();
-            expect(errorView).toHaveTextContent('There has been an error!Close');
         });
 
     });

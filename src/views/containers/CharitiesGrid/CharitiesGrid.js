@@ -5,7 +5,8 @@ import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import Loader from '../../components/Loader/Loader';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
-import { GridContainer, GridCell, OverlayWrap } from '../../components/Styled';
+import Error from '../../components/Error/Error';
+import { GridContainer, GridCell } from '../../components/Styled';
 
 const CharitiesGrid = () => {
 
@@ -43,20 +44,7 @@ const CharitiesGrid = () => {
                 <Loader 
                     isLoading={ isLoading } />
                 {isError && 
-                    <OverlayWrap
-                        data-testid="charities-grid-error">
-                        <Flex
-                            flexDirection="column"
-                            alignItems="center"
-                            justifyContent="center"
-                            width="100%">
-                            <Text 
-                                color="#627381"
-                                mb={ 2 }>
-                                There has been an error!
-                            </Text>
-                        </Flex>
-                    </OverlayWrap>
+                    <Error />
                 }
                 {!isError && charities.length > 0 && charities.map((el, index) => (
                     <GridCell 
