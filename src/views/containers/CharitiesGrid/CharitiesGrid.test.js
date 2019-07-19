@@ -118,4 +118,8 @@ describe('<CharitiesGrid />', () => {
           });
     });
 
+    it('should render an error', async () => {
+
+    });
+
 });
