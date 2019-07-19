@@ -16,7 +16,9 @@ describe('<Error />', () => {
 
     it('should have a close button', () => {
         const { getByTestId } = render(<Error callback={ jest.fn() } />);
-        expect(getByTestId('error-message')).toBeInTheDocument(); 
+        const cta = getByTestId('close-cta');
+        expect(cta).toBeInTheDocument(); 
+        expect(cta).toHaveTextContent('Close'); 
     });  
     
     it('should execute the callback prop', () => {
