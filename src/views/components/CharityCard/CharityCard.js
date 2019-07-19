@@ -24,10 +24,11 @@ const CharityCard = ({ id, name, image, currency }) => {
             flexDirection="column"
             border="1px solid"
             borderColor="red">
-            {toggle && <OverlayControl 
-                id={ id } 
-                currency={ currency }
-                handleToggle={ handleClick } />
+            {toggle && 
+                <OverlayControl 
+                    id={ id } 
+                    currency={ currency }
+                    handleToggle={ handleClick } />
             }
             <Card
                 data-testid="charity-card-image"

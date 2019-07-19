@@ -19,7 +19,7 @@ describe('<CharityCard />', () => {
         currency: 'THB' 
     };
 
-    it('should exist', () => {
+    it('should render', () => {
         const { getByTestId } = render(generateContextComponent(props));
         expect(getByTestId('charity-card')).toBeInTheDocument();
     });
@@ -41,6 +41,16 @@ describe('<CharityCard />', () => {
         const cta = getByTestId('charity-card-cta');
         expect(cta).toBeInTheDocument();
         expect(cta).toHaveTextContent('Donate');
+    });
+
+    it('should render the donation total', () => {
+        const state = { 
+            donations: [] 
+        };
+        const { getByTestId } = render(generateContextComponent(props, state));
+        const totalTxt = getByTestId('donation-total');
+        expect(totalTxt).toBeInTheDocument();
+        expect(totalTxt).toHaveTextContent('Amount donated: 0 (THB)')
     });
 
 });

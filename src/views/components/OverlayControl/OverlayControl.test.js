@@ -10,7 +10,7 @@ function generateContextComponent(props = {}, state = { donations: [] }, dispatc
             </Context.Provider>;
 }
 
-fdescribe('<OverlayControl />', () => {
+describe('<OverlayControl />', () => {
 
     const props = {
         id: 1,
