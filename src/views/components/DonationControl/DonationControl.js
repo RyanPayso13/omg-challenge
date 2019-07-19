@@ -4,7 +4,7 @@ import Context from '../../../state/context';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Loader from '../Loader/Loader';
-import Error from '../Error/Error';
+import NotificationMessage from '../NotificationMessage/NotificationMessage';
 import { OverlayWrap, ValidationMessage } from '../Styled';  
 
 const DonationControl = ({ id, currency, handleToggle }) => {
@@ -53,32 +53,15 @@ const DonationControl = ({ id, currency, handleToggle }) => {
         <React.Fragment>
             <Loader isLoading={ isLoading } />
             {isSuccess && 
-                <OverlayWrap
-                    data-testid="donation-success">
-                    <Flex
-                        flexDirection="column"
-                        alignItems="center"
-                        justifyContent="center"
-                        width="100%">
-                        <Text 
-                            color="#627381"
-                            mb={ 2 }>
-                                Your donation was successful!
-                        </Text>
-                        <Button 
-                            data-testid="close-cta"
-                            border="1px solid"
-                            borderColor="#2b6cb0"
-                            color="#2b6cb0"
-                            bg="white"
-                            onClick={ handleToggle }>
-                            Close
-                        </Button>
-                    </Flex>
-                </OverlayWrap>
+                <NotificationMessage 
+                    message="Your donation was successful!"
+                    callback={ handleToggle } />
             }
             {isError && 
-                <Error callback={ handleToggle } />
+                <NotificationMessage 
+                    message="There has been an error!"
+                    callback={ handleToggle }
+                    msgColor="red" />
             }
             {!isLoading && !isSuccess && !isError &&
                 <Flex

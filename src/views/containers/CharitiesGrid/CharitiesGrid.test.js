@@ -120,8 +120,12 @@ describe('<CharitiesGrid />', () => {
 
     it('should render error state', async () => {
       const { getByTestId } = render(generateComponent(Promise.reject('API error')));
-      const errorView = await waitForElement(() => getByTestId('error-message'));
+      const errorView = await waitForElement(() => getByTestId('notification-container'));
+      const errorMsg = await waitForElement(() => getByTestId('notification-message'));
       expect(errorView).toBeInTheDocument();
+      expect(errorMsg).toBeInTheDocument();
+      expect(errorMsg).toHaveTextContent('There has been an error!');
+      expect(errorMsg).toHaveStyle('color: red');
     });
 
 });

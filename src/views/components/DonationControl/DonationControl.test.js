@@ -85,10 +85,11 @@ describe('<DonationControl />', () => {
             expect(fetchMock.lastUrl()).toEqual('http://localhost:3001/payments');
             expect(fetchMock.lastOptions()).toEqual({"body": "{\"charitiesId\":1,\"amount\":10,\"currency\":\"THB\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"});
         
-            const successView = await waitForElement(() => getByTestId('donation-success'));
+            const successView = await waitForElement(() => getByTestId('notification-container'));
+            const successMsg = await waitForElement(() => getByTestId('notification-message'));
             expect(successView).toBeInTheDocument();
-            expect(successView).toHaveTextContent('Your donation was successful!Close');
-
+            expect(successMsg).toHaveTextContent('Your donation was successful!');
+            expect(successMsg).toHaveStyle('color: #B62420');
         });
 
         it('should render error state', async () => {
@@ -98,8 +99,11 @@ describe('<DonationControl />', () => {
             fireEvent.change(select, { target: { value: '10' } });
             fireEvent.click(btn);
         
-            const errorView = await waitForElement(() => getByTestId('error-container'));
+            const errorView = await waitForElement(() => getByTestId('notification-container'));
+            const errorMsg = await waitForElement(() => getByTestId('notification-message'));
             expect(errorView).toBeInTheDocument();
+            expect(errorMsg).toHaveTextContent('There has been an error!');
+            expect(errorMsg).toHaveStyle('color: red');
         });
 
     });

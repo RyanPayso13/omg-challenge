@@ -5,7 +5,7 @@ import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import Loader from '../../components/Loader/Loader';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
-import Error from '../../components/Error/Error';
+import NotificationMessage from '../../components/NotificationMessage/NotificationMessage';
 import { GridContainer, GridCell } from '../../components/Styled';
 
 const CharitiesGrid = () => {
@@ -44,7 +44,9 @@ const CharitiesGrid = () => {
                 <Loader 
                     isLoading={ isLoading } />
                 {isError && 
-                    <Error />
+                    <NotificationMessage 
+                        message="There has been an error!"
+                        msgColor="red" />
                 }
                 {!isError && charities.length > 0 && charities.map((el, index) => (
                     <GridCell 

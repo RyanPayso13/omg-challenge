@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotificationMessage /> should render 1`] = `
+<div
+  class="sc-gZMcBi eSpJzV"
+  data-testid="notification-container"
+>
+  <div
+    class="sc-bdVaJa sc-bwzfXH dJYYq"
+    width="100%"
+  >
+    <div
+      class="sc-bdVaJa sc-htpNat bbGqVi"
+      color="#B62420"
+      data-testid="notification-message"
+    />
+  </div>
+</div>
+`;
