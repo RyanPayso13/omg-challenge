@@ -1,16 +1,23 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitForElement, wait } from '@testing-library/react';
+import { FetchMock, fetchMock } from '@react-mock/fetch';
+import * as CONSTANTS from '../../../constants';
 import Context from '../../../state/context';
 import DonationControl from './DonationControl';
 
-function generateContextComponent(props = {}, state = { donations: [] }, dispatch = jest.fn()) {
+function generateContextComponent(props = {}, state = { donations: [] }, dispatch = jest.fn(), resp = []) {
 
-    return <Context.Provider value={{ state, dispatch }}>
-                <DonationControl {...props} />
-            </Context.Provider>;
+    return <FetchMock mocks={[{
+                matcher: `${CONSTANTS.API_URL}/payments`, 
+                response: resp
+            }]}>
+                <Context.Provider value={{ state, dispatch }}>
+                    <DonationControl {...props} />
+                </Context.Provider>
+            </FetchMock>;
 }
 
-fdescribe('<DonationControl />', () => {
+describe('<DonationControl />', () => {
 
     const props = {
         id: 1, 
@@ -65,20 +72,35 @@ fdescribe('<DonationControl />', () => {
 
     describe('Donation submission', () => {
 
-        it('should submit the donation', () => {
+        it('should submit the donation', async () => {
+            const { getByTestId } = render(generateContextComponent(props));
+            const select = getByTestId('donation-amount');
+            const btn = getByTestId('donation-cta');
+
+            expect(select.value).toBe('');
+            fireEvent.change(select, { target: { value: '10' } });
+            expect(select.value).toBe('10');
+            fireEvent.click(btn);
+            expect(fetchMock.called(`${CONSTANTS.API_URL}/payments`)).toBe(true);
+            expect(fetchMock.lastUrl()).toEqual('http://localhost:3001/payments');
+            expect(fetchMock.lastOptions()).toEqual({"body": "{\"charitiesId\":1,\"amount\":10,\"currency\":\"THB\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"});
+        
+            const successView = await waitForElement(() => getByTestId('donation-success'));
+            expect(successView).toBeInTheDocument();
+            expect(successView).toHaveTextContent('Your donaton was successful!Close');
 
         });
 
-        it('should not submit the donation', () => {
-
-        });
-
-        it('should render the success state', () => {
-
-        });
-
-        it('should render the error state', () => {
-
+        it('should render error state', async () => {
+            const { getByTestId } = render(generateContextComponent(props, { donations: [] }, jest.fn(), Promise.reject('API error')));
+            const select = getByTestId('donation-amount');
+            const btn = getByTestId('donation-cta');
+            fireEvent.change(select, { target: { value: '10' } });
+            fireEvent.click(btn);
+        
+            const errorView = await waitForElement(() => getByTestId('donation-error'));
+            expect(errorView).toBeInTheDocument();
+            expect(errorView).toHaveTextContent('There has been an error!Close');
         });
 
     });

@@ -88,7 +88,7 @@ const DonationControl = ({ id, currency, handleToggle }) => {
                         <Text 
                             color="#627381"
                             mb={ 2 }>
-                                There has been an error!
+                            There has been an error!
                         </Text>
                         <Button 
                             data-testid="close-cta"
@@ -102,66 +102,68 @@ const DonationControl = ({ id, currency, handleToggle }) => {
                     </Flex>
                 </OverlayWrap>
             }
-            <Flex
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                width="100%">
-                <form 
-                    onSubmit={ handleOnSubmit }  
-                    data-testid="donation-form">
-                    <Flex
-                        flexDirection="column"
-                        alignItems="center">
-                        <Box 
-                            mb="2"
-                            flex="flex">
-                            <label 
-                                htmlFor="donation-amount"
-                                data-testid="donation-label">
-                                    <Text color="#627381">Select the amount to donate ({ currency })</Text>
-                            </label>
-                        </Box>
-                        <Box
-                            mb="2">
-                            <select
-                                id="donation-amount" 
-                                name="donation-amount"
-                                data-testid="donation-amount"
-                                onChange={ handleOnChange }
-                                ref={ amountRef }
-                                defaultValue="">
-                                    <option value="">
-                                        Select an amount...
-                                    </option>
-                                {amounts.length > 0 && amounts.map((amount, index) => {
-                                    return <option 
-                                                key={index}
-                                                value={ amount }>
-                                                { amount }
-                                            </option>
-                                })}
-                            </select>
-                        </Box>
-                        {validation && 
-                            <ValidationMessage 
-                                data-testid="donation-validation-message">
-                                Please select an amount!
-                            </ValidationMessage>
-                        }
-                        <Box>
-                            <Button 
-                                data-testid="donation-cta"
-                                border="1px solid"
-                                borderColor="#2b6cb0"
-                                color="#2b6cb0"
-                                bg="white">
-                                Pay
-                            </Button>
-                        </Box>
-                    </Flex>
-                </form>
-            </Flex>
+            {!isLoading && !isSuccess && !isError &&
+                <Flex
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    width="100%">
+                    <form 
+                        onSubmit={ handleOnSubmit }  
+                        data-testid="donation-form">
+                        <Flex
+                            flexDirection="column"
+                            alignItems="center">
+                            <Box 
+                                mb="2"
+                                flex="flex">
+                                <label 
+                                    htmlFor="donation-amount"
+                                    data-testid="donation-label">
+                                        <Text color="#627381">Select the amount to donate ({ currency })</Text>
+                                </label>
+                            </Box>
+                            <Box
+                                mb="2">
+                                <select
+                                    id="donation-amount" 
+                                    name="donation-amount"
+                                    data-testid="donation-amount"
+                                    onChange={ handleOnChange }
+                                    ref={ amountRef }
+                                    defaultValue="">
+                                        <option value="">
+                                            Select an amount...
+                                        </option>
+                                    {amounts.length > 0 && amounts.map((amount, index) => {
+                                        return <option 
+                                                    key={index}
+                                                    value={ amount }>
+                                                    { amount }
+                                                </option>
+                                    })}
+                                </select>
+                            </Box>
+                            {validation && 
+                                <ValidationMessage 
+                                    data-testid="donation-validation-message">
+                                    Please select an amount!
+                                </ValidationMessage>
+                            }
+                            <Box>
+                                <Button 
+                                    data-testid="donation-cta"
+                                    border="1px solid"
+                                    borderColor="#2b6cb0"
+                                    color="#2b6cb0"
+                                    bg="white">
+                                    Pay
+                                </Button>
+                            </Box>
+                        </Flex>
+                    </form>
+                </Flex>
+        }
         </React.Fragment>
     );
 };
