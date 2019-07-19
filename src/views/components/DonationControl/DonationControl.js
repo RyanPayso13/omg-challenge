@@ -4,8 +4,7 @@ import Context from '../../../state/context';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Loader from '../Loader/Loader';
-import { ValidationMessage } from '../Styled/ValidationMessage';  
-import { OverlayWrap } from '../../components/Styled/OverlayWrap';
+import { OverlayWrap, ValidationMessage } from '../Styled';  
 
 const DonationControl = ({ id, currency, handleToggle }) => {
 

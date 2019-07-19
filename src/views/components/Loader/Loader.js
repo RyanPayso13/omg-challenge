@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
-import { OverlayWrap } from '../../components/Styled/OverlayWrap';
+import { OverlayWrap } from '../Styled';
 
 const Loader = ({ isLoading }) => {
     

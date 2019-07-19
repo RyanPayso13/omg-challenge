@@ -5,9 +5,7 @@ import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';
 import Loader from '../../components/Loader/Loader';
 import CharityCard from '../../components/CharityCard/CharityCard'; 
-import { GridContainer } from '../../components/Styled/GridContainer';
-import { GridCell } from '../../components/Styled/GridCell';
-import { OverlayWrap } from '../../components/Styled/OverlayWrap';
+import { GridContainer, GridCell, OverlayWrap } from '../../components/Styled';
 
 const CharitiesGrid = () => {
 

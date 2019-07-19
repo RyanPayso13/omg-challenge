@@ -1,7 +1,6 @@
 import React from 'react';
 import DonationControl from '../DonationControl/DonationControl';
-import { OverlayClose } from '../Styled/OverlayClose';
-import { OverlayWrap } from '../Styled/OverlayWrap';
+import { OverlayClose, OverlayWrap } from '../Styled';
 
 const OverlayControl = ({ id, currency, handleToggle }) => {
 
