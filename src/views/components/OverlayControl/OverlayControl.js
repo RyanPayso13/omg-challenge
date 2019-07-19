@@ -15,8 +15,7 @@ const OverlayControl = ({ id, currency, handleToggle }) => {
             <DonationControl 
                 id={ id } 
                 currency={ currency }
-                handleToggle={ handleToggle }
-                data-testid="overlay-donation-control" />
+                handleToggle={ handleToggle } />
         </OverlayWrap>
     );
 };
