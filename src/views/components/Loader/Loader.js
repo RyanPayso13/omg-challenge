@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
 import { OverlayWrap } from '../Styled';
 
-const Loader = ({ isLoading }) => {
+const Loader = () => {
     
     const loader = css`
         align-self: center;
@@ -11,15 +11,11 @@ const Loader = ({ isLoading }) => {
     `;
 
     return (
-        <React.Fragment>
-            {isLoading && 
-                <OverlayWrap>
-                    <SyncLoader
-                        css={ loader }
-                        color='#3C98EE' />
-                </OverlayWrap>
-            }
-        </React.Fragment>
+        <OverlayWrap>
+            <SyncLoader
+                css={ loader }
+                color='#3C98EE' />
+        </OverlayWrap>
     );
 };
 

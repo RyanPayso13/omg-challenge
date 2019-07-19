@@ -41,8 +41,9 @@ const CharitiesGrid = () => {
     return (
         <GridContainer
             data-testid="charities-grid">
-                <Loader 
-                    isLoading={ isLoading } />
+                {isLoading && 
+                    <Loader />
+                }
                 {isError && 
                     <NotificationMessage 
                         message="There has been an error!"

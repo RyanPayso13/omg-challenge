@@ -51,7 +51,9 @@ const DonationControl = ({ id, currency, handleToggle }) => {
 
     return(
         <React.Fragment>
-            <Loader isLoading={ isLoading } />
+            {isLoading && 
+                <Loader />
+            }
             {isSuccess && 
                 <NotificationMessage 
                     message="Your donation was successful!"
