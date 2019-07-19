@@ -87,7 +87,7 @@ describe('<DonationControl />', () => {
         
             const successView = await waitForElement(() => getByTestId('donation-success'));
             expect(successView).toBeInTheDocument();
-            expect(successView).toHaveTextContent('Your donaton was successful!Close');
+            expect(successView).toHaveTextContent('Your donation was successful!Close');
 
         });
 

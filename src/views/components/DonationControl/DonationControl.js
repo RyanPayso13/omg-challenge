@@ -63,7 +63,7 @@ const DonationControl = ({ id, currency, handleToggle }) => {
                         <Text 
                             color="#627381"
                             mb={ 2 }>
-                                Your donaton was successful!
+                                Your donation was successful!
                         </Text>
                         <Button 
                             data-testid="close-cta"
