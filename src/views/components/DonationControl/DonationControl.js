@@ -144,7 +144,8 @@ const DonationControl = ({ id, currency, handleToggle }) => {
                             </select>
                         </Box>
                         {validation && 
-                            <ValidationMessage data-testid="donation-validation-message">
+                            <ValidationMessage 
+                                data-testid="donation-validation-message">
                                 Please select an amount!
                             </ValidationMessage>
                         }

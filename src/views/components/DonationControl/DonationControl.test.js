@@ -1,7 +1,5 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import StateMock from '@react-mock/state';
-import * as CONSTANTS from '../../../constants';
 import Context from '../../../state/context';
 import DonationControl from './DonationControl';
 
@@ -12,14 +10,14 @@ function generateContextComponent(props = {}, state = { donations: [] }, dispatc
             </Context.Provider>;
 }
 
-describe('<DonationControl />', () => {
+fdescribe('<DonationControl />', () => {
 
     const props = {
         id: 1, 
         currency: 'THB' 
     };
 
-    it('should exist', () => {
+    it('should render', () => {
         const { getByTestId } = render(generateContextComponent(props));
         expect(getByTestId('donation-form')).toBeInTheDocument();
     });
@@ -29,19 +27,6 @@ describe('<DonationControl />', () => {
         const label = getByTestId('donation-label');
         expect(label).toBeInTheDocument();
         expect(label).toHaveTextContent(`Select the amount to donate (${ props.currency })`);
-    });
-
-    it('should render the total donated', () => {
-        const state = {
-            donations:[{
-                charitiesId: 1,
-                amount: 100
-            }]
-        };
-        const { getByTestId } = render(generateContextComponent(props, state));
-        const total = getByTestId('donation-total');
-        expect(total).toBeInTheDocument();
-        expect(total).toHaveTextContent(`Amount donated: ${ state.donations[0].amount } ${ props.currency }`);
     });
 
     it('should render a donate CTA', () => {
@@ -60,21 +45,21 @@ describe('<DonationControl />', () => {
         });
 
         it('should have amount options', () => {
-            const { container, getByTestId } = render(generateContextComponent(props));
+            const { container } = render(generateContextComponent(props));
             const options = container.querySelectorAll('option');
             expect(options.length).toEqual(6);
         });
 
-        // xit('should render a validation message', async () => {
-        //     const { getByText } = render(
-        //         <StateMock state={{ validation: true }}>
-        //           <DonationControl { ...props } />
-        //         </StateMock>
-        //       );
-        //     const msg = await waitForElement(() => getByText('Please select an amount!'));
-        //     expect(msg).toBeInTheDocument();
-        //     expect(msg).toHaveTextContent('Please select an amount!');
-        // });
+        it('should render a validation message', async () => {
+            const { getByTestId } = render(generateContextComponent(props));
+
+            fireEvent.click(getByTestId('donation-cta'));
+
+            const msg = getByTestId('donation-validation-message');
+
+            expect(msg).toBeInTheDocument();
+            expect(msg).toHaveTextContent('Please select an amount!');
+        });
 
     });
 
@@ -85,6 +70,14 @@ describe('<DonationControl />', () => {
         });
 
         it('should not submit the donation', () => {
+
+        });
+
+        it('should render the success state', () => {
+
+        });
+
+        it('should render the error state', () => {
 
         });
 
