@@ -3,7 +3,6 @@
 import '@testing-library/react/cleanup-after-each';
 // this adds jest-dom's custom assertions
 import '@testing-library/jest-dom/extend-expect';
-import 'jest-styled-components';
 
 // this is just a little hack to silence a warning that we'll get until react
 // fixes this: https://github.com/facebook/react/pull/14853

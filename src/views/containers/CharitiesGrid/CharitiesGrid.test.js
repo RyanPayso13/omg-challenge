@@ -118,8 +118,11 @@ describe('<CharitiesGrid />', () => {
           });
     });
 
-    it('should render an error', async () => {
-
-    });
+    it('should render error state', async () => {
+      const { getByTestId } = render(generateComponent(Promise.reject('API error')));
+      const errorView = await waitForElement(() => getByTestId('charities-grid-error'));
+      expect(errorView).toBeInTheDocument();
+      expect(errorView).toHaveTextContent('There has been an error!Close');
+  });
 
 });
