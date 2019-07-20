@@ -8,7 +8,7 @@ import Loader from '../Loader/Loader';
 import NotificationMessage from '../NotificationMessage/NotificationMessage';
 import { ValidationMessage } from '../Styled';  
 
-const DonationControl = ({ id, currency, handleToggle }) => {
+const DonationControl = ({ id, currency, handleClose }) => {
 
     const amounts = [...CONSTANTS.DONATION_AMOUNTS];
     const {state, dispatch} = useContext(Context);
@@ -58,12 +58,12 @@ const DonationControl = ({ id, currency, handleToggle }) => {
             {isSuccess && 
                 <NotificationMessage 
                     message="Your donation was successful!"
-                    callback={ handleToggle } />
+                    callback={ handleClose } />
             }
             {isError && 
                 <NotificationMessage 
                     message="There has been an error!"
-                    callback={ handleToggle }
+                    callback={ handleClose }
                     msgColor="red" />
             }
             {!isLoading && !isSuccess && !isError &&
@@ -134,7 +134,7 @@ const DonationControl = ({ id, currency, handleToggle }) => {
 
 DonationControl.propTypes = {
     id: PropTypes.number.isRequired,
-    handleToggle: PropTypes.func.isRequired,
+    handleClose: PropTypes.func.isRequired,
     currency: PropTypes.string.isRequired
 };
 

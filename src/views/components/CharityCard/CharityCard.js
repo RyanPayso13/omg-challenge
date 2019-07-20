@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Flex, Box, Text, Button } from 'rebass';
 import Context from '../../../state/context';
-import OverlayControl from '../OverlayControl/OverlayControl';
+import DonationControl from '../DonationControl/DonationControl';
+import OverlayContainer from '../../containers/OverlayContainer/OverlayContainer';
 
 const assetPath = process.env.PUBLIC_URL + '/assets/img/';
 
@@ -26,10 +27,14 @@ const CharityCard = ({ id, name, image, currency }) => {
             border="1px solid"
             borderColor="red">
             {toggle && 
-                <OverlayControl 
-                    id={ id } 
-                    currency={ currency }
-                    handleToggle={ handleClick } />
+                <OverlayContainer 
+                    handleClose= { handleClick }
+                    render={() => {
+                        return <DonationControl 
+                                    id={ id }
+                                    currency={ currency }
+                                    handleToggle={ handleClick } />;
+                    }} />
             }
             <Card
                 data-testid="charity-card-image"

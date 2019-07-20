@@ -21,7 +21,8 @@ describe('<DonationControl />', () => {
 
     const props = {
         id: 1, 
-        currency: 'THB' 
+        currency: 'THB',
+        handleClose: jest.fn()
     };
 
     it('should render', () => {

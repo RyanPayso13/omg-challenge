@@ -10,8 +10,8 @@ exports[`<NotificationMessage /> should render 1`] = `
     width="100%"
   >
     <div
-      class="sc-bdVaJa sc-htpNat bbGqVi"
-      color="#B62420"
+      class="sc-bdVaJa sc-htpNat AOxAi"
+      color="#627381"
       data-testid="notification-message"
     />
   </div>
