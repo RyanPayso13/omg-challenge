@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Flex, Text } from 'rebass';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Context from '../../../state/context';

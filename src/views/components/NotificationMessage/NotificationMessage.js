@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Flex, Text, Button } from 'rebass';
 import { OverlayWrap } from '../Styled';
 
@@ -31,6 +32,12 @@ const NotificationMessage = ({ message = '', callback, msgColor = "#627381" }) =
             </Flex>
         </OverlayWrap>
     );
+};
+
+NotificationMessage.propTypes = {
+    message: PropTypes.string,
+    callback: PropTypes.func,
+    msgColor: PropTypes.string
 };
 
 export default NotificationMessage;

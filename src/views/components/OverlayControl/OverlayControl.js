@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DonationControl from '../DonationControl/DonationControl';
 import { OverlayClose, OverlayWrap } from '../Styled';
 
@@ -17,6 +18,12 @@ const OverlayControl = ({ id, currency, handleToggle }) => {
                 handleToggle={ handleToggle } />
         </OverlayWrap>
     );
+};
+
+OverlayControl.propTypes = {
+    id: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default OverlayControl;

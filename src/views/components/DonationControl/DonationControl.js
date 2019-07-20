@@ -1,11 +1,12 @@
 import React, { useState, useContext, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Box, Flex, Button, Text } from 'rebass';
 import Context from '../../../state/context';
 import * as CONSTANTS from '../../../constants';
 import * as actions from '../../../state/actions/actionCreators';
 import Loader from '../Loader/Loader';
 import NotificationMessage from '../NotificationMessage/NotificationMessage';
-import { OverlayWrap, ValidationMessage } from '../Styled';  
+import { ValidationMessage } from '../Styled';  
 
 const DonationControl = ({ id, currency, handleToggle }) => {
 
@@ -129,6 +130,12 @@ const DonationControl = ({ id, currency, handleToggle }) => {
         }
         </React.Fragment>
     );
+};
+
+DonationControl.propTypes = {
+    id: PropTypes.number.isRequired,
+    handleToggle: PropTypes.func.isRequired,
+    currency: PropTypes.string.isRequired
 };
 
 export default DonationControl;

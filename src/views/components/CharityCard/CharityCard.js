@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Card, Flex, Box, Text, Button } from 'rebass';
 import Context from '../../../state/context';
 import OverlayControl from '../OverlayControl/OverlayControl';
@@ -72,6 +73,13 @@ const CharityCard = ({ id, name, image, currency }) => {
             </Box>
         </Flex>
     );
+};
+
+CharityCard.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired
 };
 
 export default CharityCard;
