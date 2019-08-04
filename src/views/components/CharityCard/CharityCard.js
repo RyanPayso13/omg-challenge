@@ -28,12 +28,12 @@ const CharityCard = ({ id, name, image, currency }) => {
             borderColor="red">
             {toggle && 
                 <OverlayContainer 
-                    handleClose= { handleClick }
-                    render={() => {
+                    handleClose={ handleClick }
+                    render={(handleClose) => {
                         return <DonationControl 
                                     id={ id }
                                     currency={ currency }
-                                    handleToggle={ handleClick } />;
+                                    handleClose={ handleClose } />;
                     }} />
             }
             <Card

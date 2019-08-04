@@ -11,7 +11,7 @@ const OverlayContainer = (props) => {
                 size="24"
                 data-testid="overlay-close"
                 onClick={ props.handleClose } />
-                { props.render() }
+                { props.render(props.handleClose) }
         </OverlayWrap>
     );
 };
